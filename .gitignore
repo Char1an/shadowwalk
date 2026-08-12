@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.ipynb_checkpoints/
+.DS_Store
+.pytest_cache/
+
+# osmnx HTTP cache
+cache/
+
+# Data caches (regeneratable, potentially large)
+data/city_graphs/*.pkl
+data/city_graphs/*.parquet
+data/buildings/*.parquet
+data/ms_footprints/*.geojson
+data/ms_footprints/*.csv.gz
+data/ms_footprints/dataset-links.csv
+
+# Streamlit
+.streamlit/secrets.toml

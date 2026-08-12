@@ -1,0 +1,11 @@
+# Dev tooling — used by tests, notebooks, and the demo GIF pipeline.
+# Not installed by Streamlit Community Cloud.
+-r requirements.txt
+
+pytest>=7.4
+jupyter>=1.0
+matplotlib>=3.8
+rasterio>=1.3       # only for the stretch canopy/DEM code paths
+imageio>=2.34       # for record_demo_gif.py
+Pillow>=10.0        # captions + palette optimisation
+playwright>=1.44    # headless Chromium for GIF frame capture
