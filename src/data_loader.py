@@ -9,7 +9,6 @@ import networkx as nx
 import osmnx as ox
 import pyproj
 import shapely.ops as sops
-from shapely.geometry import LineString
 
 # Overpass mirrors, tried in order. The main endpoint gets rate-limited
 # aggressively during peak hours; kumi.systems is the community backup.

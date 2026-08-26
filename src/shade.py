@@ -22,7 +22,7 @@ import geopandas as gpd
 import networkx as nx
 import numpy as np
 from shapely.affinity import translate
-from shapely.geometry import LineString, MultiPolygon, Point, Polygon
+from shapely.geometry import LineString, Point, Polygon
 from shapely.ops import unary_union
 from shapely.strtree import STRtree
 

@@ -27,7 +27,7 @@ from pathlib import Path
 import geopandas as gpd
 import pandas as pd
 import requests
-from shapely.geometry import Polygon, box, shape
+from shapely.geometry import box, shape
 
 from .config import DATA_DIR
 
