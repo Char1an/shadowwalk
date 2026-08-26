@@ -217,12 +217,23 @@ with geo_col:
         """
 <div style="text-align:right;">
   <button onclick="
-    if (!navigator.geolocation) { alert('Geolocation not supported'); return; }
+    if (!navigator.geolocation) { alert('Geolocation not supported by this browser.'); return; }
     navigator.geolocation.getCurrentPosition(
       p => {
-        const url = new URL(window.parent.location.href);
-        url.searchParams.set('start', p.coords.latitude.toFixed(5) + ',' + p.coords.longitude.toFixed(5));
-        window.parent.location.href = url.toString();
+        const q = 'start=' + p.coords.latitude.toFixed(5) + ',' + p.coords.longitude.toFixed(5);
+        try {
+          const url = new URL(window.parent.location.href);
+          url.searchParams.set('start', p.coords.latitude.toFixed(5) + ',' + p.coords.longitude.toFixed(5));
+          window.parent.location.href = url.toString();
+        } catch (e) {
+          // Streamlit iframe may block cross-origin parent access — fall back
+          // to copying a shareable URL so the user can paste it manually.
+          const share = 'https://shadowwalk.streamlit.app/?' + q;
+          navigator.clipboard.writeText(share).then(
+            () => alert('Location copied as URL — paste it into the address bar:\\n\\n' + share),
+            () => alert('Please paste this in the address bar:\\n\\n' + share)
+          );
+        }
       },
       e => alert('Could not get location: ' + e.message)
     );"
