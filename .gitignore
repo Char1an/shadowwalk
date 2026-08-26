@@ -32,3 +32,6 @@ data/ms_footprints/dataset-links.csv
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Personal blueprint — kept local, never pushed
+HANDOUT.md
