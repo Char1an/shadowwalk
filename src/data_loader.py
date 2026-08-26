@@ -20,16 +20,26 @@ _OVERPASS_MIRRORS = [
 ]
 
 
-def _try_mirrors(fetch_fn):
-    """Run `fetch_fn` against each Overpass mirror in sequence; the first
-    success returns its value. Raises the last exception on total failure."""
+def _try_mirrors(fetch_fn, retries_per_mirror: int = 2, backoff_s: float = 1.5):
+    """Run `fetch_fn` against each Overpass mirror in sequence, with a short
+    exponential backoff per mirror. Streamlit Cloud's shared IPs regularly hit
+    Overpass rate limits; giving each mirror a couple of retries with a 1.5→3 s
+    wait dramatically improves success on cold cloud starts.
+
+    The first success returns its value. Raises the last exception on total
+    failure so the caller can surface a plain-English error.
+    """
+    import time
     last_exc: Exception | None = None
     for url in _OVERPASS_MIRRORS:
         ox.settings.overpass_url = url
-        try:
-            return fetch_fn()
-        except Exception as e:
-            last_exc = e
+        for attempt in range(retries_per_mirror):
+            try:
+                return fetch_fn()
+            except Exception as e:
+                last_exc = e
+                if attempt < retries_per_mirror - 1:
+                    time.sleep(backoff_s * (2 ** attempt))
     raise last_exc  # type: ignore[misc]
 
 from .config import (
