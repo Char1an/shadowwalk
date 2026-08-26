@@ -29,6 +29,9 @@ data/ms_footprints/dataset-links.csv
 !data/city_graphs/trees_13.0418_80.2345_1500.parquet
 !data/city_graphs/trees_28.6315_77.2170_1500.parquet
 !data/city_graphs/trees_23.0330_72.5685_1500.parquet
+!data/city_graphs/area_12.3080_76.6560_1500_ms.pkl
+!data/buildings/area_12.3080_76.6560_1500_ms.parquet
+!data/city_graphs/trees_12.3080_76.6560_1500.parquet
 
 # Streamlit
 .streamlit/secrets.toml
