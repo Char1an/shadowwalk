@@ -18,5 +18,17 @@ data/ms_footprints/*.geojson
 data/ms_footprints/*.csv.gz
 data/ms_footprints/dataset-links.csv
 
+# EXCEPTIONS — ship these primary demo-city caches so the deployed app
+# doesn't cold-hit Overpass (which rate-limits Streamlit Cloud's IPs).
+!data/city_graphs/area_13.0418_80.2345_1500.pkl
+!data/city_graphs/area_28.6315_77.2170_1500.pkl
+!data/city_graphs/area_23.0330_72.5685_1500.pkl
+!data/buildings/area_13.0418_80.2345_1500.parquet
+!data/buildings/area_28.6315_77.2170_1500.parquet
+!data/buildings/area_23.0330_72.5685_1500.parquet
+!data/city_graphs/trees_13.0418_80.2345_1500.parquet
+!data/city_graphs/trees_28.6315_77.2170_1500.parquet
+!data/city_graphs/trees_23.0330_72.5685_1500.parquet
+
 # Streamlit
 .streamlit/secrets.toml
